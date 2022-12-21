@@ -38,7 +38,7 @@ class RotaryPillBox(Boxes):
             "--diameter",  action="store", type=float, default=100.,
             help="disk diameter (mm)")
         self.argparser.add_argument(
-            "--hole_diameter",  action="store", type=float, default=2.,
+            "--hole_diameter",  action="store", type=float, default=3.6,
             help="center hole diameter (mm)")
 
         #TODO: use NutHole?
@@ -210,7 +210,8 @@ class RotaryPillBox(Boxes):
         self.circle(0, 0, self.diameter/2)
         self.pill_inset(0)
         if holes:
-            self.hole(0, 0, self.hole_radius)
+            # TODO: use separate hole radius:
+            self.hole(0, 0, self.hole_radius*0.97)
             self.magnet_ring(top=True)
 
     def bottom_disk(self):
