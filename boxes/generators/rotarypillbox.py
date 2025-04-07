@@ -38,9 +38,15 @@ class RotaryPillBox(Boxes):
             "--diameter",  action="store", type=float, default=100.,
             help="disk diameter (mm)")
         self.argparser.add_argument(
-            "--hole_diameter",  action="store", type=float, default=3.6,
+            "--hole_diameter",  action="store", type=float, default=3.3,
             help="center hole diameter (mm)")
 
+        self.argparser.add_argument(
+            "--round_magnet_diameter",  action="store", type=float, default=3.9,
+            help="round magnet diameter")
+        self.argparser.add_argument(
+            "--square_magnet_diameter",  action="store", type=float, default=4.75,
+            help="square magnet diameter")
         #TODO: use NutHole?
         self.argparser.add_argument(
             "--bottom_hole_diameter",  action="store", type=float, default=8.,
@@ -105,10 +111,10 @@ class RotaryPillBox(Boxes):
         x = self.radius - self.inset_outer_dist/2
         self.ctx.rotate(self.angle(k+0.5))
         if top:
-            magnet_radius = 3.9/2
+            magnet_radius = self.round_magnet_diameter/2
             self.hole(x, 0, magnet_radius)
         else:
-            magnet_w = magnet_h = 4.8
+            magnet_w = magnet_h = self.square_magnet_diameter
             magnet_r = 0.0
             self.rectangularHole(x, 0,
                     magnet_w, magnet_h, magnet_r)
